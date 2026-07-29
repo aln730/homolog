@@ -20,7 +20,7 @@
 
   services.udev.extraRules = ''
     SUBSYSTEM=="usb", ATTR{idVendor}=="0403", ATTR{idProduct}=="6001", MODE="0660", GROUP="nfc"
-    SUBSYSTEM=="tty", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6001", ATTRS{serial}=="A5069RR4", SYMLINK+="pn532", MODE="0660", GROUP="nfc"
+    SUBSYSTEM=="tty", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6001", ATTRS{serial}=="A5069RR4", SYMLINK+="pn532", MODE="0660", GROUP="nfc", ENV{ID_MM_DEVICE_IGNORE}="1"
   '';
   users.groups.nfc = {};
 
