@@ -1,15 +1,19 @@
 {
-  description = "A very basic flake";
+  description = "NixOS configs for Raspberry Pi nodes";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
   };
 
   outputs = { self, nixpkgs }: {
+    nixosConfigurations.homolog-01 = nixpkgs.lib.nixosSystem {
+      system = "aarch64-linux";
+      modules = [
+        ./modules/gatekeeper.nix
+        ./hosts/homolog-01/default.nix
+      ];
+    };
 
-    packages.x86_64-linux.hello = nixpkgs.legacyPackages.x86_64-linux.hello;
-
-    packages.x86_64-linux.default = self.packages.x86_64-linux.hello;
-
+    formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt-rfc-style;
   };
 }
