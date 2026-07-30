@@ -13,12 +13,27 @@
     "console=serial0,115200"
     "console=tty1"
   ];
+  boot.consoleLogLevel = 3;
+  boot.kernel.sysctl."vm.swappiness" = 10;
 
   networking.useDHCP = lib.mkDefault true;
+  networking.wireless.enable = false;
   networking.firewall.enable = true;
   networking.firewall.allowedTCPPorts = [ 22 ];
 
   services.openssh.enable = true;
+
+  hardware.bluetooth.enable = false;
+  services.xserver.enable = false;
+  services.udisks2.enable = false;
+  security.polkit.enable = lib.mkForce false;
+
+  nix.settings.auto-optimise-store = true;
+  system.disableInstallerTools = true;
+  programs.command-not-found.enable = false;
+  services.logind.settings.Login.IdleAction = "ignore";
+  powerManagement.enable = true;
+  powerManagement.cpuFreqGovernor = "performance";
 
   users.users.gk = {
     isNormalUser = true;
@@ -41,8 +56,8 @@
   '';
   users.groups.nfc = { };
 
-  powerManagement.cpuFreqGovernor = "performance";
   zramSwap.enable = true;
   documentation.enable = false;
   documentation.nixos.enable = false;
 }
+
