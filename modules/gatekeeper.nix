@@ -48,6 +48,8 @@
     libfreefare
     openssl
     pkg-config
+    cargo
+    rustc
   ];
 
   services.udev.extraRules = ''
