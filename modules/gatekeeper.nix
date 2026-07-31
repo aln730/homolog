@@ -64,8 +64,9 @@
 
   environment.etc."nfc/libnfc.conf".text = ''
     device.name = "pn532_uart"
-    device.connstring = "pn532_uart:/dev/pn532"
+    device.connstring = "pn532_uart:/dev/pn532:115200"
   '';
+  
   users.groups.nfc = { };
 
   zramSwap.enable = true;
