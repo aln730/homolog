@@ -16,7 +16,10 @@
   boot.consoleLogLevel = 3;
   boot.kernel.sysctl."vm.swappiness" = 10;
 
-  nix.settings.trusted-users = [ "root" "gk" ];
+  nix.settings.trusted-users = [
+    "root"
+    "gk"
+  ];
 
   networking.useDHCP = lib.mkDefault true;
   networking.wireless.enable = false;
