@@ -61,6 +61,11 @@
     SUBSYSTEM=="usb", ATTR{idVendor}=="0403", ATTR{idProduct}=="6001", MODE="0660", GROUP="nfc"
     SUBSYSTEM=="tty", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6001", ATTRS{serial}=="A5069RR4", SYMLINK+="pn532", MODE="0660", GROUP="nfc", ENV{ID_MM_DEVICE_IGNORE}="1"
   '';
+
+  environment.etc."nfc/libnfc.conf".text = ''
+  device.name = "pn532_uart"
+  device.connstring = "pn532_uart:/dev/pn532"
+'';
   users.groups.nfc = { };
 
   zramSwap.enable = true;
